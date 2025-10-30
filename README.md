@@ -55,3 +55,10 @@ F.34     | clustering.f        | An efficient clustering routine
 F.35     | voronai.f           | The Voronoi construction in 2d and 3d
 F.36     | mc-hardlines.f      | Monte Carlo simulation of hard lines in 2d
 F.37     | fft.f               | Routines to calculate Fourier transforms
+
+## How to run
+
+```bash
+gfortran -ffixed-form -o ewald ewald.f
+./ewald
+```

@@ -383,5 +383,27 @@ C    *******************************************************************
         RETURN
         END
 
+      PROGRAM MAIN
+      REAL KAPPA, VR, VK
+      COMMON /BLOCK1/ RX(216), RY(216), RZ(216), Z(216)
+      COMMON /BLOCK2/ KVEC(1000)
+      INTEGER I
 
+C     Initialize test data
+      KAPPA = 0.5
+      DO I = 1, 216
+         RX(I) = REAL(MOD(I,6)) / 6.0
+         RY(I) = REAL(MOD(I/6,6)) / 6.0
+         RZ(I) = REAL(I/36) / 6.0
+         Z(I)  = (-1.0)**I    ! alternate charges
+      END DO
 
+C     Run setup and calculations
+      CALL SETUP(KAPPA)
+      CALL RWALD(KAPPA, VR)
+      CALL KWALD(KAPPA, VK)
+
+      PRINT *, 'R-space energy:', VR
+      PRINT *, 'K-space energy:', VK
+
+      END
